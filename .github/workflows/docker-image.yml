@@ -13,18 +13,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout the repository
     - uses: actions/checkout@v4
+
+    # Step 2: Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}   
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}   # Docker Hub username stored as a secret
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  # Docker Hub access token stored as a secret
 
+    # Step 3: Set up an environment variable to store the timestamp
+    - name: Set up timestamp variable
+      run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
+    # Step 4: Build the Docker image with both the timestamp tag and latest
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag photoangell/ymbbt-faceclone-dev:$(date +%s) --tag photoangell/ymbbt-faceclone-dev:latest
+      run: docker build . --file Dockerfile --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} --tag photoangell/ymbbt-faceclone-dev:latest
 
+    # Step 5: Push the Docker image to Docker Hub
     - name: Push the Docker image
       run: |
-        docker push photoangell/ymbbt-faceclone-dev:$(date +%s)
+        docker push photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }}
         docker push photoangell/ymbbt-faceclone-dev:latest
-        
