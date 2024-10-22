@@ -34,6 +34,7 @@ jobs:
     # Step 5: Push the Docker image to Docker Hub
     - name: Push the Docker image
       run: |
+        echo "Pushing the Docker image with tag: ${{ env.IMAGE_TAG }}..."
         docker push photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }}
         docker push photoangell/ymbbt-faceclone-dev:latest
 
