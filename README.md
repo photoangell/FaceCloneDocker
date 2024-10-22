@@ -25,5 +25,5 @@ docker build -t photoangell/ymbbt-faceclone-dev:latest .
 To run the Docker container, use the following command:
 
 ```sh
-docker run -p 8080:8080 photoangell/ymbbt-faceclone-dev:latest
+docker run --gpus all -p 8080:8080 -p 7860:7860 photoangell/ymbbt-faceclone-dev:latest
 ```
