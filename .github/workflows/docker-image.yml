@@ -20,7 +20,7 @@ jobs:
     - name: Run security checks
       run: |
         # Add your security check command here, e.g., bandit
-        bandit -r .
+        bandit -r . -ll
 
     # Step 3: Log in to Docker Hub
     - name: Log in to Docker Hub
