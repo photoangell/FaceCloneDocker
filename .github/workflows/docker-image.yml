@@ -29,7 +29,7 @@ jobs:
 
     # Step 4: Build the Docker image with both the timestamp tag and latest
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} --tag photoangell/ymbbt-faceclone-dev:latest
+      run: docker buildx build . --file Dockerfile --platform linux/amd64 --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} --tag photoangell/ymbbt-faceclone-dev:latest
 
     # Step 5: Push the Docker image to Docker Hub
     - name: Push the Docker image
