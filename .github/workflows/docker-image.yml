@@ -23,9 +23,9 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}   # Docker Hub username stored as a secret
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  # Docker Hub access token stored as a secret
 
-    # Step 3: Set up an environment variable to store the timestamp
-    - name: Set up timestamp variable
-      run: echo "IMAGE_TAG=$(git describe --tags --always)" >> $GITHUB_ENV
+    # Step 3: Set up an environment variable to store the datestamp and git commit
+    - name: Set up datestamp and git commit tag
+      run: echo "IMAGE_TAG=$(date +'%y%m%d')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
     # Step 4: Build the Docker image with both the timestamp tag and latest
     - name: Build the Docker image
