@@ -33,7 +33,9 @@ jobs:
         docker buildx build . --file Dockerfile --platform linux/amd64 \
           --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} \
           --tag photoangell/ymbbt-faceclone-dev:latest \
-          --progress=plain
+          --progress=plain \
+          --cache-from=type=registry,ref=photoangell/ymbbt-faceclone-dev:latest \
+          --cache-to=type=registry,ref=photoangell/ymbbt-faceclone-dev:latest,mode=max
 
     # Step 5: Push the Docker image to Docker Hub (only if the build succeeds)
     - name: Push the Docker image
@@ -51,4 +53,3 @@ jobs:
           echo "Build failed"
         else
           echo "Build succeeded"
-        fi
