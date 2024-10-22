@@ -16,32 +16,32 @@ jobs:
     # Step 1: Checkout the repository
     - uses: actions/checkout@v4
 
-    # Step 2: Log in to Docker Hub
+    # Step 2: Run security checks (before building the Docker image)
+    - name: Run security checks
+      run: |
+        # Add your security check command here, e.g., bandit
+        bandit -r .
+
+    # Step 3: Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}   # Docker Hub username stored as a secret
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  # Docker Hub access token stored as a secret
 
-    # Step 3: Set up an environment variable to store the datestamp and git commit
+    # Step 4: Set up an environment variable to store the datestamp and git commit
     - name: Set up datestamp and git commit tag
       run: echo "IMAGE_TAG=$(date +'%y%m%d')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-    # Step 4: Build the Docker image with both the timestamp tag and latest
+    # Step 5: Build the Docker image with both the timestamp tag and latest
     - name: Build the Docker image
       run: docker buildx build . --file Dockerfile --platform linux/amd64 --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} --tag photoangell/ymbbt-faceclone-dev:latest
 
-    # Step 5: Push the Docker image to Docker Hub
+    # Step 6: Push the Docker image to Docker Hub
     - name: Push the Docker image
       run: |
         docker push photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }}
         docker push photoangell/ymbbt-faceclone-dev:latest
-
-    # Step 6: Run security checks
-    - name: Run security checks
-      run: |
-        # Add your security check command here, e.g., bandit
-        bandit -r .
 
     # Step 7: Configure notifications for build failures and successes
     - name: Notify build status
