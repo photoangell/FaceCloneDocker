@@ -20,7 +20,6 @@ RUN dpkg -i cloudflared-linux-amd64.deb
 
 # Set up virtual environment inside the container
 RUN python3 -m venv venv-dev
-#RUN . venv-dev/bin/activate
 
 # Activate virtual environment and install Jupyter
 RUN venv-dev/bin/pip install --upgrade pip \
@@ -34,5 +33,6 @@ RUN venv-dev/bin/pip install --upgrade huggingface-hub diffusers
 # Expose the Jupyter port
 EXPOSE 8080
 
-# Run Jupyter on container startup with the custom token
+# Run Jupyter on container startup with the custom token - this is not required when running in Vast.Ai
+# This command is in the vast.ai template
 #CMD ["venv-dev/bin/jupyter", "notebook", "--ServerApp.token='YmbbtWillBlowYourTinyMind'", "--port=8080", "--no-browser", "--allow-root"]
