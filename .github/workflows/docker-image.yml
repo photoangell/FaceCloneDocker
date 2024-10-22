@@ -61,15 +61,7 @@ jobs:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-${{ github.sha }}
 
-    # Step 5: Push the Docker image to Docker Hub (only if the build succeeds)
-    - name: Push the Docker image
-      if: success()  # This ensures the push only happens if the build succeeds
-      run: |
-        echo "Pushing the Docker image with tag: ${{ env.IMAGE_TAG }}..."
-        docker push photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }}
-        docker push photoangell/ymbbt-faceclone-dev:latest
-
-    # Step 6: Configure notifications for build failures and successes
+    # Step 8: Configure notifications for build failures and successes
     - name: Notify build status
       if: always()
       run: |
