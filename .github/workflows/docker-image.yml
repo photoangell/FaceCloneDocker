@@ -36,3 +36,20 @@ jobs:
       run: |
         docker push photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }}
         docker push photoangell/ymbbt-faceclone-dev:latest
+
+    # Step 6: Run security checks
+    - name: Run security checks
+      run: |
+        # Add your security check command here, e.g., bandit
+        bandit -r .
+
+    # Step 7: Configure notifications for build failures and successes
+    - name: Notify build status
+      if: failure()
+      run: |
+        # Add your notification command here, e.g., send an email or Slack message
+        echo "Build failed"
+      if: success()
+      run: |
+        # Add your notification command here, e.g., send an email or Slack message
+        echo "Build succeeded"
