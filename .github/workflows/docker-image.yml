@@ -45,11 +45,10 @@ jobs:
 
     # Step 7: Configure notifications for build failures and successes
     - name: Notify build status
-      if: failure()
+      if: failure() || success()
       run: |
-        # Add your notification command here, e.g., send an email or Slack message
-        echo "Build failed"
-      if: success()
-      run: |
-        # Add your notification command here, e.g., send an email or Slack message
-        echo "Build succeeded"
+        if [ ${{ job.status }} == 'failure' ]; then
+          echo "Build failed"
+        else
+          echo "Build succeeded"
+        fi

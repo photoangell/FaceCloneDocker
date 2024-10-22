@@ -17,7 +17,7 @@ FaceCloneDocker is a Dockerized application for face cloning using deep learning
 To build the Docker image, run the following command in the root directory of the repository:
 
 ```sh
-docker build -t your-dockerhub-username/faceclone:latest .
+docker build -t photoangell/ymbbt-faceclone-dev:latest .
 ```
 
 ### Running the Docker Container
@@ -25,6 +25,5 @@ docker build -t your-dockerhub-username/faceclone:latest .
 To run the Docker container, use the following command:
 
 ```sh
-docker run -p 8080:8080 your-dockerhub-username/faceclone:latest
+docker run -p 8080:8080 photoangell/ymbbt-faceclone-dev:latest
 ```
-
