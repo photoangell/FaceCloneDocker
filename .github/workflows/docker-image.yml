@@ -25,7 +25,7 @@ jobs:
 
     # Step 3: Set up an environment variable to store the timestamp
     - name: Set up timestamp variable
-      run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+      run: echo "IMAGE_TAG=$(git describe --tags --always)" >> $GITHUB_ENV
 
     # Step 4: Build the Docker image with both the timestamp tag and latest
     - name: Build the Docker image
