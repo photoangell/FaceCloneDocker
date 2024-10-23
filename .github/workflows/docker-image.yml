@@ -74,7 +74,8 @@ jobs:
     - name: Notify build status
       if: always()
       run: |
-        if [ ${{ job.status }} == 'failure' ]; then
+        if [ "${{ job.status }}" == "failure" ]; then
           echo "Build failed"
         else
           echo "Build succeeded"
+        fi
