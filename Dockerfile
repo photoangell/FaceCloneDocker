@@ -1,5 +1,5 @@
 # Use the base image you're working with, e.g., Python with specific versions if needed
-FROM nvidia/cuda:12.6.2-base-ubuntu22.04
+FROM nvidia/cuda:12.6.2-cudnn-runtime-ubuntu22.04
 
 # Set up working directory
 WORKDIR /workspace
