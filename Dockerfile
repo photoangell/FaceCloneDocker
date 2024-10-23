@@ -23,7 +23,7 @@ RUN python3 -m venv venv-dev
 
 # Activate virtual environment and install Jupyter
 RUN venv-dev/bin/pip install --upgrade pip \
-    && venv-dev/bin/pip install jupyter pickleshare
+    && venv-dev/bin/pip install jupyter pickleshare mediapipe
 
 # Set up InstantID
 RUN git clone https://github.com/photoangell/InstantID.git
