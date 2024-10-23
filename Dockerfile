@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Cloudflare for tunneling
-RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-RUN dpkg -i cloudflared-linux-amd64.deb
+# RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+# RUN dpkg -i cloudflared-linux-amd64.deb
 
 # Set up virtual environment inside the container
 RUN python3 -m venv venv-dev
