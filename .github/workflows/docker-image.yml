@@ -55,12 +55,12 @@ jobs:
     # --cache-from=type=local,src=/tmp/.buildx-cache \
     # --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
 
-    # Step 7: Save cache to GitHub Actions cache
-    - name: Save cache
-      uses: actions/cache@v3
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
+    # # Step 7: Save cache to GitHub Actions cache
+    # - name: Save cache
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: /tmp/.buildx-cache
+    #     key: ${{ runner.os }}-buildx-${{ github.sha }}
 
     # # Step 8: Push the Docker image to Docker Hub (only if the build succeeds)
     # - name: Push the Docker image
