@@ -29,8 +29,8 @@ RUN git clone https://github.com/photoangell/InstantID.git \
     && venv-dev/bin/pip install --upgrade huggingface-hub diffusers \
     && venv-dev/bin/pip cache purge
 
-# Expose the Jupyter port
-EXPOSE 8080
+# Expose the Jupyter & gradio port
+EXPOSE 8080 7860
 
 # Run Jupyter on container startup with the custom token - this is not required when running in Vast.Ai
 # This command is in the vast.ai template
