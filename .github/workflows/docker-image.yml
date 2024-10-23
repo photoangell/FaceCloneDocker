@@ -48,10 +48,11 @@ jobs:
         echo "Building the Docker image..."
         docker buildx build . --file Dockerfile --platform linux/amd64 \
           --tag photoangell/ymbbt-faceclone-dev:${{ env.IMAGE_TAG }} \
-          --tag photoangell/ymbbt-faceclone-dev:latest \
-          --progress=plain \
-          --cache-from=type=local,src=/tmp/.buildx-cache \
-          --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+          --tag photoangell/ymbbt-faceclone-dev:latest 
+    # \
+    # --progress=plain \
+    # --cache-from=type=local,src=/tmp/.buildx-cache \
+    # --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
 
     # Step 7: Save cache to GitHub Actions cache
     - name: Save cache
