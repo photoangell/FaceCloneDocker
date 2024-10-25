@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
     wget \
     git \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && git lfs install
 
 # Set up virtual environment inside the container
 RUN python3 -m venv venv-dev
