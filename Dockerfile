@@ -5,13 +5,15 @@ FROM nvidia/cuda:12.6.2-cudnn-runtime-ubuntu22.04
 WORKDIR /workspace
 
 # Install any system dependencies and clean up in a single RUN command
-RUN apt-get update && apt-get install -y \
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
+    apt-get update && apt-get install -y \
     python3.10-venv \
     python3-dev \
     g++ \
     libgl1-mesa-glx \
     wget \
     git \
+    git-lfs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && git lfs install
