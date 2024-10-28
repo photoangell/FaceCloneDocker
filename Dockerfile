@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
 
 # Set up InstantID and install its dependencies
 RUN git clone https://github.com/photoangell/InstantID.git \
-    && pip install --upgrade pip \
+    && if [ ! -e /usr/bin/python ]; then ln -s /usr/bin/python3 /usr/bin/python; fi \
+    && if [ ! -e /usr/bin/pip ]; then ln -s /usr/bin/pip3 /usr/bin/pip; fi \
+    && python3 -m pip install --upgrade pip \
     && pip install -r InstantID/gradio_demo/requirements.txt \
     && pip install jupyter pickleshare mediapipe \
     && pip install --upgrade huggingface-hub diffusers \
