@@ -6,7 +6,7 @@ WORKDIR /workspace
 
 # Install any system dependencies and clean up in a single RUN command
 RUN apt-get update && apt-get install -y \
-    python3-dev \
+    python3 python3-dev python3-pip \
     g++ \
     libgl1-mesa-glx \
     wget \
